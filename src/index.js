@@ -3,12 +3,26 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import BaiTapDatVe from './pages/BaiTapDatVe/BaiTapDatVe';
+import Home from './pages/Home/Home';
+//Setup redux
+import {Provider} from 'react-redux';
+import { store } from './redux/reducer/configStore'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <BrowserRouter>
+        <Routes>
+          <Route path='' element={<App/>}>
+            <Route path='' element={<Home/>}></Route>
+            <Route path='/home' element={<Home/>}></Route>
+            <Route path='datveghe' element={<BaiTapDatVe/>}></Route>
+          </Route>
+        </Routes>
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
